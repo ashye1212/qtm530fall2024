@@ -33,7 +33,7 @@ panel on the left:
 
 Delete existing table
 -- SQLBook: Code
--- Active: 1710903290079@@127.0.0.1@5432@postgres
+-- Active: 1732030143812@@127.0.0.1@5432@postgres
 -- If the table already exists we can drop it:
 -- If it doesn't exist nothing happens
 -- System commands are in upper case and user defined
@@ -82,6 +82,7 @@ View the table in the VSC "Database" Panel
 $\qquad$ <img src="figures/view_table_sql.png" alt="drawing" width="350"/>
 
 -- SQLBook: Code
+-- Active: 1732030143812@@127.0.0.1@5432@postgres
 -- In SQL, a set of tables is called a "Schema"
 -- Click "refresh" to see changes
 -- The pencil button edits column attributes
@@ -104,6 +105,7 @@ INSERT INTO drivers VALUES (4, 'Thor','Asgard',1000);
 
 INSERT INTO drivers VALUES (4, 'Alejandro','Colombia',5000);
 
+INSERT INTO drivers VALUES (6, 'Kris', 'UK', 1234);
 
 
 -- SQLBook: Markup
@@ -158,6 +160,7 @@ SELECT SUM(victories)  AS sum_victories,
        MAX(victories) AS max_victories
 FROM drivers;
 
+
 -- SQLBook: Markup
 <font size="5"> 
 
@@ -171,6 +174,9 @@ ORDER BY victories ASC;
 -- Order in descending order of victories
 SELECT * FROM drivers
 ORDER BY victories DESC;
+
+SELECT * FROM drivers
+ORDER BY driver_id ASC;
 -- SQLBook: Markup
 <font size = "5">
 
@@ -213,6 +219,13 @@ SELECT nationality,
        MAX(victories) AS max_victories
 FROM drivers
 GROUP BY nationality;
+
+
+SELECT 
+     SUM(victories) AS total_victories
+FROM drivers; 
+
+
 -- SQLBook: Markup
 <font size = "5">
 
@@ -264,6 +277,10 @@ SELECT nationality, MAX(victories) AS max_victories FROM drivers
 GROUP BY nationality
 HAVING MAX(victories) < 71
 
+SELECT nationality, MIN(victories) AS min_vic FROM drivers
+GROUP BY nationality
+HAVING MIN(victories) >71
+
 -- SQLBook: Markup
 # <span style="color:darkblue"> IV. Merging </span>
 
@@ -293,7 +310,7 @@ Left-join data
 - ``` LEFT JOIN``` is followed by the secondary dataset
 
 -- SQLBook: Code
--- Active: 1710903290079@@127.0.0.1@5432@postgres
+-- Active: 1732030143812@@127.0.0.1@5432@postgres
 
 SELECT * 
 FROM drivers
